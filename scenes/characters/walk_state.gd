@@ -3,6 +3,7 @@ extends NodeState
 @export var player: Player
 @export var animatedSprite2d: AnimatedSprite2D 
 @export var speed: int = 5000
+@export var hitbox: CollisionShape2D
 
 func _on_process(_delta : float) -> void:
 	pass 
@@ -21,6 +22,9 @@ func _on_physics_process(_delta : float) -> void:
 	
 	if direction != Vector2.ZERO:
 		player.player_direction = direction
+	# 
+	hitbox.position.x = player.player_direction[0] * 26
+	hitbox.position.y = (1 - player.player_direction[1]) * -50
 	
 	player.velocity = direction * speed * _delta
 	player.move_and_slide()

@@ -58,6 +58,7 @@ radius = 14.0
 height = 68.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 13)
 collision_layer = 2
 script = ExtResource("1_kqtwu")
 
@@ -68,7 +69,7 @@ position = Vector2(1, -17)
 sprite_frames = SubResource("SpriteFrames_yewv4")
 animation = &"idle_forward"
 autoplay = "idle_forward"
-frame_progress = 0.6019416
+frame_progress = 0.5251484
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
@@ -78,10 +79,11 @@ shape = SubResource("CircleShape2D_atpat")
 script = ExtResource("2_76oj4")
 initial_node_state = NodePath("Idle")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
 script = ExtResource("3_atpat")
 player = NodePath("../..")
 animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d")]
 script = ExtResource("3_dyp2m")
@@ -92,8 +94,7 @@ animatedSprite2d = NodePath("../../AnimatedSprite2D")
 position = Vector2(0, 37)
 is_owner_player = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
-position = Vector2(0, -1)
+[node name="hitbox" type="CollisionShape2D" parent="HitComponent"]
 shape = SubResource("CircleShape2D_6eyoc")
 debug_color = Color(0.88152826, 0.0003523171, 0.82032806, 0.41960785)
 
