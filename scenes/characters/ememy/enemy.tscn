@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1eh4dxvoy4ql"]
+
+[ext_resource type="Script" uid="uid://pgobxafword8" path="res://scripts/enemy/enemy.gd" id="1_rkxph"]
+[ext_resource type="Script" uid="uid://bnjvom8uqgyex" path="res://scripts/state_machine/node_state_machine.gd" id="2_yvs50"]
+[ext_resource type="Script" uid="uid://b4safto3kqa5g" path="res://scripts/enemy/walk_state.gd" id="4_sawml"]
+[ext_resource type="Script" uid="uid://3qm7ncaide8o" path="res://scripts/enemy/idle_state.gd" id="5_ujaa3"]
+[ext_resource type="PackedScene" uid="uid://drr4ttks0mvgg" path="res://scenes/components/hurt_component.tscn" id="6_ujaa3"]
+[ext_resource type="PackedScene" uid="uid://kju2141b7m8k" path="res://scenes/components/damage_component.tscn" id="7_y5x75"]
+[ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="8_y5x75"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_byofa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abgf3"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5khvr"]
+radius = 17.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_rkxph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_byofa")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("2_yvs50")
+initial_node_state = NodePath("Idle")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_sawml")
+enemy = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ujaa3")
+enemy = NodePath("../..")
+
+[node name="HurtComponent" parent="." instance=ExtResource("6_ujaa3")]
+position = Vector2(-49.15515, -44.791)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(49.15515, 44.791)
+shape = SubResource("CircleShape2D_abgf3")
+debug_color = Color(0.98787385, 0.05822961, 0.24079278, 0.41960785)
+
+[node name="DamageComponent" parent="." instance=ExtResource("7_y5x75")]
+max_damage = 2
+
+[node name="HitComponent" parent="." instance=ExtResource("8_y5x75")]
+position = Vector2(-13, 1)
+hit_damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
+position = Vector2(13, -1)
+shape = SubResource("CircleShape2D_5khvr")
+debug_color = Color(0.6516297, 0.32806712, 1, 0.41960785)
