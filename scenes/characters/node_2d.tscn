@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://cu5mm36dtnrcu"]
+
+[ext_resource type="Script" uid="uid://comvqxi7gvu3x" path="res://scenes/characters/player.gd" id="1_8wbs5"]
+[ext_resource type="Texture2D" uid="uid://cv7keno8uqswl" path="res://assests/characters/player.png" id="2_mtybs"]
+[ext_resource type="Script" uid="uid://bnjvom8uqgyex" path="res://scripts/state_machine/node_state_machine.gd" id="3_js5t6"]
+[ext_resource type="Script" uid="uid://b26ilhf28q4uq" path="res://scenes/characters/walk_state.gd" id="4_prkvb"]
+[ext_resource type="Script" uid="uid://suheit42dprd" path="res://scenes/characters/idle_state.gd" id="5_if0tu"]
+[ext_resource type="Script" uid="uid://d3k3md8ohegpi" path="res://scenes/entities/enemy/enemy.gd" id="6_if0tu"]
+[ext_resource type="Texture2D" uid="uid://22aeivuk4o3u" path="res://assests/characters/playerALT.png" id="7_j1wdh"]
+[ext_resource type="Script" uid="uid://b4wenbrwb1eac" path="res://scenes/entities/enemy/spawn.gd" id="7_wkgqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plq8i"]
+atlas = ExtResource("2_mtybs")
+region = Rect2(0, 0, 19, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65tya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plq8i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdks7"]
+atlas = ExtResource("7_j1wdh")
+region = Rect2(0, 0, 19, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7axt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdks7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_8wbs5")
+metadata/_custom_type_script = "uid://comvqxi7gvu3x"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(289, 137)
+sprite_frames = SubResource("SpriteFrames_65tya")
+autoplay = "default"
+
+[node name="StateMachine" type="Node" parent="Player"]
+script = ExtResource("3_js5t6")
+metadata/_custom_type_script = "uid://bnjvom8uqgyex"
+
+[node name="Walk" type="Node" parent="Player/StateMachine"]
+script = ExtResource("4_prkvb")
+
+[node name="Idle" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_if0tu")
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+script = ExtResource("6_if0tu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="enemy"]
+sprite_frames = SubResource("SpriteFrames_7axt8")
+autoplay = "default"
+
+[node name="StateMachine" type="Node" parent="enemy"]
+
+[node name="Spawn" type="Node" parent="enemy/StateMachine"]
+script = ExtResource("7_wkgqw")
