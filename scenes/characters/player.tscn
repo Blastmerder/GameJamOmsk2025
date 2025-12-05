@@ -49,11 +49,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atpat"]
-radius = 7.0
+radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6eyoc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7vyk4"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eojnx"]
+radius = 14.0
+height = 68.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -62,13 +64,14 @@ script = ExtResource("1_kqtwu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 2
 texture_filter = 1
+position = Vector2(1, -17)
 sprite_frames = SubResource("SpriteFrames_yewv4")
 animation = &"idle_forward"
 autoplay = "idle_forward"
-frame_progress = 0.27099344
+frame_progress = 0.6019416
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
+position = Vector2(0, 11)
 shape = SubResource("CircleShape2D_atpat")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
@@ -90,7 +93,7 @@ position = Vector2(0, 37)
 is_owner_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
-position = Vector2(0, -5)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_6eyoc")
 debug_color = Color(0.88152826, 0.0003523171, 0.82032806, 0.41960785)
 
@@ -101,5 +104,5 @@ max_damage = 10
 is_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
-position = Vector2(0, 14)
-shape = SubResource("CircleShape2D_7vyk4")
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_eojnx")
