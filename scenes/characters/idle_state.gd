@@ -7,16 +7,18 @@ func _on_process(_delta : float) -> void:
 	pass 
 
 func _on_physics_process(_delta : float) -> void:
+	animatedSprite2d.flip_h = false
 	if player.player_direction == Vector2.LEFT:
-		animatedSprite2d.play("idle_left")
+		animatedSprite2d.play("idle_side")
+		animatedSprite2d.flip_h = true
 	elif player.player_direction == Vector2.RIGHT:
-		animatedSprite2d.play("idle_right")
+		animatedSprite2d.play("idle_side")
 	elif player.player_direction == Vector2.UP:
-		animatedSprite2d.play("idle_up")
+		animatedSprite2d.play("idle_backward")
 	elif player.player_direction == Vector2.DOWN:
-		animatedSprite2d.play("idle_down")
+		animatedSprite2d.play("idle_forward")
 	else:
-		animatedSprite2d.play("idle_down")
+		animatedSprite2d.play("idle_forward")
 
 
 func _on_next_transitions() -> void:
