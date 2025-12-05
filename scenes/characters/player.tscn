@@ -1,10 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://dl0qgbe50ojd3"]
+[gd_scene load_steps=30 format=3 uid="uid://dl0qgbe50ojd3"]
 
 [ext_resource type="Script" uid="uid://comvqxi7gvu3x" path="res://scenes/characters/player.gd" id="1_kqtwu"]
 [ext_resource type="Script" uid="uid://bnjvom8uqgyex" path="res://scripts/state_machine/node_state_machine.gd" id="2_76oj4"]
 [ext_resource type="Script" uid="uid://b26ilhf28q4uq" path="res://scenes/characters/walk_state.gd" id="3_atpat"]
 [ext_resource type="Script" uid="uid://suheit42dprd" path="res://scenes/characters/idle_state.gd" id="3_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dl1myevm606fc" path="res://assets/player.png" id="5_atpat"]
+[ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="6_kqtwu"]
+[ext_resource type="PackedScene" uid="uid://kju2141b7m8k" path="res://scenes/components/damage_component.tscn" id="7_eojnx"]
+[ext_resource type="PackedScene" uid="uid://drr4ttks0mvgg" path="res://scenes/components/hurt_component.tscn" id="8_qgnko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 region = Rect2(0, 0, 19, 40)
@@ -164,6 +167,10 @@ radius = 7.0
 atlas = ExtResource("5_atpat")
 region = Rect2(7, 8, 26, 70)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6eyoc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vyk4"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_kqtwu")
@@ -196,3 +203,22 @@ animatedSprite2d = NodePath("../../AnimatedSprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = SubResource("AtlasTexture_a2luo")
+
+[node name="HitComponent" parent="." instance=ExtResource("6_kqtwu")]
+position = Vector2(0, 37)
+is_owner_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_6eyoc")
+debug_color = Color(0.88152826, 0.0003523171, 0.82032806, 0.41960785)
+
+[node name="DamageComponent" parent="." instance=ExtResource("7_eojnx")]
+max_damage = 10
+
+[node name="HurtComponent" parent="." instance=ExtResource("8_qgnko")]
+is_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(0, 14)
+shape = SubResource("CircleShape2D_7vyk4")
