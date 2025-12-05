@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnj3wwynfjus8"]
+
+[ext_resource type="Texture2D" uid="uid://22aeivuk4o3u" path="res://assets/game/characters/playerALT.png" id="1_w548k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyi48"]
+atlas = ExtResource("1_w548k")
+region = Rect2(0, 0, 19, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w548k"]
+radius = 6.0
+
+[node name="Guide" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.25, 0)
+texture = SubResource("AtlasTexture_jyi48")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 14)
+shape = SubResource("CircleShape2D_w548k")
