@@ -2,11 +2,13 @@ extends NodeState
 
 @export var player: Player
 @export var animatedSprite2d: AnimatedSprite2D 
-@export var speed: int = 5000
 @export var hitbox: CollisionShape2D
+@onready var walk: Node = $"../Walk"
+
 
 func _on_process(_delta : float) -> void:
 	pass 
+
 
 func _on_physics_process(_delta : float) -> void:
 	var direction: Vector2 = GameInputEvents.movement_input()
@@ -27,23 +29,22 @@ func _on_physics_process(_delta : float) -> void:
 	hitbox.position.x = player.player_direction[0] * 26
 	hitbox.position.y = (1 - player.player_direction[1]) * -50
 	
-	player.velocity = direction * speed * _delta
+	player.velocity = direction * walk.speed * _delta
 	player.move_and_slide()
+	hitbox.disabled = true
 
 
 func _on_next_transitions() -> void:
-	GameInputEvents.movement_input()
-	
-	if !GameInputEvents.is_movement_input() or player.player_in_dialogue:
-		transition.emit("Idle")
-	
-	if Input.is_action_pressed("attack"):
-		transition.emit("AttackWalk")
+	if !animatedSprite2d.is_playing():
+		if GameInputEvents.is_movement_input() and not player.player_in_dialogue:
+			transition.emit("Walk")
+		else:
+			transition.emit("Id")
 
 
 func _on_enter() -> void:
-	pass
-
+	hitbox.disabled = false
+	animatedSprite2d.play("attack")
 
 func _on_exit() -> void:
-	animatedSprite2d.stop()
+	hitbox.disabled = true

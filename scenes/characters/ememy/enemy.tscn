@@ -43,7 +43,7 @@ shape = SubResource("CircleShape2D_abgf3")
 debug_color = Color(0.98787385, 0.05822961, 0.24079278, 0.41960785)
 
 [node name="DamageComponent" parent="." instance=ExtResource("7_y5x75")]
-max_damage = 9
+max_damage = 2
 
 [node name="HitComponent" parent="." instance=ExtResource("8_y5x75")]
 position = Vector2(-13, 1)

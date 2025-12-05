@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl0qgbe50ojd3"]
+[gd_scene load_steps=20 format=3 uid="uid://dl0qgbe50ojd3"]
 
 [ext_resource type="Script" uid="uid://comvqxi7gvu3x" path="res://scenes/characters/player.gd" id="1_kqtwu"]
 [ext_resource type="Script" uid="uid://bnjvom8uqgyex" path="res://scripts/state_machine/node_state_machine.gd" id="2_76oj4"]
@@ -6,8 +6,18 @@
 [ext_resource type="Script" uid="uid://suheit42dprd" path="res://scenes/characters/idle_state.gd" id="3_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dl1myevm606fc" path="res://assets/player.png" id="5_atpat"]
 [ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="6_kqtwu"]
+[ext_resource type="Script" uid="uid://b0jmoinivthgt" path="res://scenes/characters/attack_idle_state.gd" id="6_qgnko"]
+[ext_resource type="Script" uid="uid://cfx5g1cfvavnu" path="res://scenes/characters/attack_walk_state.gd" id="7_7vyk4"]
 [ext_resource type="PackedScene" uid="uid://kju2141b7m8k" path="res://scenes/components/damage_component.tscn" id="7_eojnx"]
 [ext_resource type="PackedScene" uid="uid://drr4ttks0mvgg" path="res://scenes/components/hurt_component.tscn" id="8_qgnko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
+atlas = ExtResource("5_atpat")
+region = Rect2(0, 0, 42, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk2m4"]
+atlas = ExtResource("5_atpat")
+region = Rect2(0, 80, 42, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
 atlas = ExtResource("5_atpat")
@@ -23,6 +33,17 @@ region = Rect2(0, 160, 42, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yewv4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l4js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk2m4")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eojnx")
@@ -52,13 +73,13 @@ animations = [{
 radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6eyoc"]
+radius = 20.09975
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eojnx"]
 radius = 14.0
 height = 68.0
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(0, 13)
 collision_layer = 2
 script = ExtResource("1_kqtwu")
 
@@ -67,9 +88,8 @@ light_mask = 2
 texture_filter = 1
 position = Vector2(1, -17)
 sprite_frames = SubResource("SpriteFrames_yewv4")
-animation = &"idle_forward"
+animation = &"attack"
 autoplay = "idle_forward"
-frame_progress = 0.5251484
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
@@ -83,12 +103,26 @@ initial_node_state = NodePath("Idle")
 script = ExtResource("3_atpat")
 player = NodePath("../..")
 animatedSprite2d = NodePath("../../AnimatedSprite2D")
+speed = 10000
 hitbox = NodePath("../../HitComponent/hitbox")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
 script = ExtResource("3_dyp2m")
 player = NodePath("../..")
 animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
+
+[node name="AttackIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
+script = ExtResource("6_qgnko")
+player = NodePath("../..")
+animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
+
+[node name="AttackWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
+script = ExtResource("7_7vyk4")
+player = NodePath("../..")
+animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
 
 [node name="HitComponent" parent="." instance=ExtResource("6_kqtwu")]
 position = Vector2(0, 37)
