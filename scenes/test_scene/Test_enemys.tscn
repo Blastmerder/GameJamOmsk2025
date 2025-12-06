@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr06510u0nj7e"]
+[gd_scene load_steps=4 format=3 uid="uid://dr06510u0nj7e"]
 
+[ext_resource type="PackedScene" uid="uid://bk6nvm1f2ujyu" path="res://tilemaps/rooms.tscn" id="1_qoqrh"]
 [ext_resource type="PackedScene" uid="uid://dl0qgbe50ojd3" path="res://scenes/characters/player.tscn" id="1_ybkqf"]
 [ext_resource type="PackedScene" uid="uid://d1eh4dxvoy4ql" path="res://scenes/characters/ememy/enemy.tscn" id="2_qoqrh"]
 
 [node name="TestEnemys" type="Node2D"]
+
+[node name="Rooms" parent="." instance=ExtResource("1_qoqrh")]
+position = Vector2(1, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_ybkqf")]
 position = Vector2(131, 136)

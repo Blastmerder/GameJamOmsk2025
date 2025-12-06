@@ -70,7 +70,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atpat"]
-radius = 11.0
+radius = 13.038404
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6eyoc"]
 radius = 20.09975
@@ -92,7 +92,7 @@ animation = &"attack"
 autoplay = "idle_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_atpat")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
