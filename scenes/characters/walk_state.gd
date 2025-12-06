@@ -10,15 +10,18 @@ func _on_process(_delta : float) -> void:
 
 func _on_physics_process(_delta : float) -> void:
 	var direction: Vector2 = GameInputEvents.movement_input()
+	animatedSprite2d.flip_h = false
 	
 	if Input.is_action_pressed("walk_left"):
-		animatedSprite2d.play("walk_left")
+		animatedSprite2d.play("walk_side")
+		animatedSprite2d.flip_h = true
 	elif Input.is_action_pressed("walk_right"):
-		animatedSprite2d.play("walk_right")
+		animatedSprite2d.play("walk_side")
+		animatedSprite2d.flip_h = false
 	elif Input.is_action_pressed("walk_up"):
-		animatedSprite2d.play("walk_up")
+		animatedSprite2d.play("walk_backward")
 	elif Input.is_action_pressed("walk_down"):
-		animatedSprite2d.play("walk_down")
+		animatedSprite2d.play("walk_forward")
 	
 	
 	if direction != Vector2.ZERO:
