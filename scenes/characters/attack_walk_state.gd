@@ -31,11 +31,11 @@ func _on_physics_process(_delta : float) -> void:
 	
 	player.velocity = direction * walk.speed * _delta
 	player.move_and_slide()
-	hitbox.disabled = true
 
 
 func _on_next_transitions() -> void:
 	if !animatedSprite2d.is_playing():
+		hitbox.disabled = true
 		if GameInputEvents.is_movement_input() and not player.player_in_dialogue:
 			transition.emit("Walk")
 		else:
