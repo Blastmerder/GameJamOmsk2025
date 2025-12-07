@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddvnry3yf4aln"]
-
-[ext_resource type="Script" uid="uid://cot7h1v8vpo8k" path="res://scenes/corridor/corridors.gd" id="1_053mh"]
-
-[node name="Corridors" type="Node2D"]
-script = ExtResource("1_053mh")

@@ -1,19 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvmlpirdpnq0l"]
+[gd_scene load_steps=8 format=3 uid="uid://bqsospx0ejxpr"]
 
-[ext_resource type="Script" uid="uid://bc7uwqwnwur62" path="res://scenes/components/bullet.gd" id="1_lr5v0"]
+[ext_resource type="Script" uid="uid://bc7uwqwnwur62" path="res://scenes/objects/bullet.gd" id="1_lr5v0"]
 [ext_resource type="Texture2D" uid="uid://dhe3ij3cxw24k" path="res://assests/resources/corridor.png" id="2_engvv"]
+[ext_resource type="PackedScene" uid="uid://ba5ee2c86h0bq" path="res://scenes/components/interactable_component.tscn" id="3_1ac6c"]
+[ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="4_a6ixa"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ty45q"]
-radius = 1.0
-height = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_engvv"]
+size = Vector2(26, 250.00003)
 
-[node name="Bullet" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nryna"]
+size = Vector2(247.30554, 27.806923)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0gkw"]
+size = Vector2(260, 40.000008)
+
+[node name="Bullet" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+collision_mask = 2
 script = ExtResource("1_lr5v0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_ty45q")
+speed = 50000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_engvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(0, -1.4210855e-14)
+rotation = -1.5707964
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_engvv")
+disabled = true
+
+[node name="InteractableComponent" parent="." instance=ExtResource("3_1ac6c")]
+scale = Vector2(-1.0513312, -1.4384907)
+collision_layer = 5
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+shape = SubResource("RectangleShape2D_nryna")
+
+[node name="HitComponent" parent="." instance=ExtResource("4_a6ixa")]
+is_owner_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
+position = Vector2(-1.43051075e-05, 0)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_w0gkw")
+
+[connection signal="interactable_activated" from="InteractableComponent" to="." method="_on_interactable_component_interactable_activated"]

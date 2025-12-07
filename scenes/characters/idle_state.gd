@@ -20,9 +20,6 @@ func _on_physics_process(_delta : float) -> void:
 	else:
 		animatedSprite2d.play("idle_forward")
 	
-	if Input.is_action_pressed("attack"):
-		transition.emit("AttackIdle")
-	
 
 func _on_next_transitions() -> void:
 	GameInputEvents.movement_input()
