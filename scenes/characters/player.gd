@@ -7,6 +7,9 @@ var player_in_dialogue: bool = false
 @onready var hurt_component: HurtComponent = $HurtComponent
 @onready var damage_component: DamageComponent = $DamageComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
+
+
+
 var t = Timer.new()
 var can_shoot = true
 
@@ -27,6 +30,7 @@ func _process(delta: float) -> void:
 	if can_shoot and Input.is_action_pressed("attack"):
 		t.start()
 		can_shoot = false
+		# Here creating bullet
 
 func _on_reload_finished():
 	print("timer")
