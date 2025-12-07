@@ -220,6 +220,7 @@ scale = Vector2(0.3222828, 0.3222828)
 collision_layer = 2
 script = ExtResource("1_kqtwu")
 bullet_scene = ExtResource("2_qgnko")
+delay = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(68.26303, -6.2057266)
