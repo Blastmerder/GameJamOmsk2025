@@ -16,13 +16,13 @@ radius = 126.88972
 radius = 156.17938
 
 [node name="Enemy" type="CharacterBody2D"]
-scale = Vector2(0.15999985, 0.15999985)
+scale = Vector2(0.225747, 0.225747)
 collision_mask = 2
 script = ExtResource("1_rkxph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-75.00007, -3.5527172e-13)
-rotation = -1.5707964
+position = Vector2(75.000084, 0)
+rotation = 1.5707964
 texture = ExtResource("8_abgf3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -37,7 +37,7 @@ shape = SubResource("CircleShape2D_abgf3")
 debug_color = Color(0.98787385, 0.05822961, 0.24079278, 0.41960785)
 
 [node name="DamageComponent" parent="." instance=ExtResource("7_y5x75")]
-max_damage = 2
+max_damage = 30
 
 [node name="HitComponent" parent="." instance=ExtResource("8_y5x75")]
 position = Vector2(-13, 1)

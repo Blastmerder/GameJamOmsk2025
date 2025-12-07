@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.0041055"
-     inkscape:cx="20.914137"
-     inkscape:cy="182.74972"
+     inkscape:zoom="2.8400392"
+     inkscape:cx="46.126123"
+     inkscape:cy="154.04717"
      inkscape:window-width="1886"
      inkscape:window-height="1003"
      inkscape:window-x="12"
@@ -39,27 +39,45 @@
      id="path2"
      ry="14.492583"
      rx="6.0418086"
-     cy="29.69441"
-     cx="50.786163" />
+     cy="51.390251"
+     cx="8.4887409"
+     transform="rotate(-39.492898)" />
   <ellipse
      style="fill:#d9be6c;fill-opacity:1;stroke:#000000;stroke-width:0.786532;stroke-opacity:1"
      id="path2-7"
-     cx="50.219429"
-     cy="48.271233"
+     cx="22.23702"
+     cy="63.0037"
      rx="7.9442797"
-     ry="11.923285" />
+     ry="11.923285"
+     transform="rotate(-26.00659)" />
+  <ellipse
+     style="fill:#d9be6c;fill-opacity:1;stroke:#000000;stroke-width:0.865;stroke-opacity:1"
+     id="path2-53"
+     ry="14.492583"
+     rx="6.0418086"
+     cy="13.738698"
+     cx="34.867664"
+     transform="rotate(29.352061)" />
+  <ellipse
+     style="fill:#d9be6c;fill-opacity:1;stroke:#000000;stroke-width:0.786532;stroke-opacity:1"
+     id="path2-7-5"
+     cx="34.608196"
+     cy="30.585577"
+     rx="7.9442797"
+     ry="11.923285"
+     transform="rotate(27.30556)" />
   <ellipse
      style="fill:#6cd9d5;fill-opacity:1;stroke:#000000;stroke-width:0.63191;stroke-opacity:1"
      id="path2-5"
-     cx="8.3375454"
-     cy="55.44104"
+     cx="12.902476"
+     cy="46.497501"
      rx="8.0215902"
      ry="7.6219888" />
   <ellipse
      style="fill:#6cd9d5;fill-opacity:1;stroke:#000000;stroke-width:0.63191;stroke-opacity:1"
      id="path2-5-2"
-     cx="51.046272"
-     cy="54.658615"
+     cx="50.95311"
+     cy="52.981701"
      rx="8.0215902"
      ry="7.6219888" />
   <g
@@ -79,8 +97,8 @@
      id="rect2"
      width="6.9827905"
      height="27.931162"
-     x="47.042557"
-     y="0.4325" />
+     x="26.453787"
+     y="6.2085352" />
   <path
      style="display:inline;fill:#47808e;fill-opacity:1;stroke:#000000;stroke-width:0.665801;stroke-opacity:1"
      d="m 15.160852,45.563581 c 11.11981,5.958429 20.97508,5.435514 31.734962,-0.38658 C 55.080503,59.852159 45.688313,74.151456 30.696221,74.549786 15.481465,74.954036 7.0392593,56.611556 15.160852,45.563581 Z"
