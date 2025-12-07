@@ -6,8 +6,8 @@
 [node name="TestEnemys" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ybkqf")]
-position = Vector2(131, 136)
+position = Vector2(511, 498)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_qoqrh")]
-position = Vector2(308, 228)
+position = Vector2(755.00006, 469)
 player = NodePath("../Player")

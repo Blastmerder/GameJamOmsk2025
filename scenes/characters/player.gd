@@ -7,11 +7,37 @@ var player_in_dialogue: bool = false
 
 @onready var hurt_component: HurtComponent = $HurtComponent
 @onready var damage_component: DamageComponent = $DamageComponent
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
+@export var current_tool: DataTypes.Guns = DataTypes.Guns.Pistol
+
+var t = Timer.new()
+var can_shoot = true
 
 func _ready() -> void:
 	hurt_component.on_hurt.connect(on_hurt)
 	damage_component.max_damage_reached.connect(on_max_damage_reached)
+	
+	t.wait_time = 1
+
+	t.one_shot = true
+	t.autostart = true
+	add_child(t)
+	t.connect("timeout", Callable(self, "_on_reload_finished"))
+	t.start()
+
+func _process(delta: float) -> void:
+	look_at(get_global_mouse_position())
+	if can_shoot and Input.is_action_pressed("attack"):
+		t.start()
+		can_shoot = false
+		# Here creating bullet
+		# For current logic of gun, use current_tool and compare with DataTypes
+
+func _on_reload_finished():
+	print("timer")
+	can_shoot = true
+
 
 func on_hurt(hit_damage):
 	damage_component.apply_damage(hit_damage)
