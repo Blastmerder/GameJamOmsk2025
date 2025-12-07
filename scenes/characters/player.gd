@@ -8,7 +8,7 @@ var player_in_dialogue: bool = false
 @onready var damage_component: DamageComponent = $DamageComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-
+@export var current_tool: DataTypes.Guns = DataTypes.Guns.Pistol
 
 var t = Timer.new()
 var can_shoot = true
@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		t.start()
 		can_shoot = false
 		# Here creating bullet
+		# For current logic of gun, use current_tool and compare with DataTypes
 
 func _on_reload_finished():
 	print("timer")
