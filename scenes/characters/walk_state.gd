@@ -4,6 +4,11 @@ extends NodeState
 @export var animatedSprite2d: AnimatedSprite2D 
 @export var speed: int = 5000
 
+@onready var audio_player: AudioStreamPlayer2D = $Walk_sound
+
+signal walk_sound
+signal walk_sound_stop
+
 func _on_process(_delta : float) -> void:
 	pass 
 
@@ -21,6 +26,9 @@ func _on_physics_process(_delta : float) -> void:
 		animatedSprite2d.play("walk_backward")
 	elif Input.is_action_pressed("walk_down"):
 		animatedSprite2d.play("walk_forward")
+	
+	if animatedSprite2d.is_playing():
+		walk_sound.emit()
 	
 	
 	if direction != Vector2.ZERO:
@@ -43,3 +51,4 @@ func _on_enter() -> void:
 
 func _on_exit() -> void:
 	animatedSprite2d.stop()
+	walk_sound_stop.emit()

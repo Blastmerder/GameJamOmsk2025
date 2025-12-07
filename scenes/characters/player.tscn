@@ -1,17 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://dl0qgbe50ojd3"]
+[gd_scene load_steps=42 format=3 uid="uid://dl0qgbe50ojd3"]
 
 [ext_resource type="Script" uid="uid://comvqxi7gvu3x" path="res://scenes/characters/player.gd" id="1_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://dy4fpe1tgxch0" path="res://assets/player.svg" id="2_2l4js"]
 [ext_resource type="Script" uid="uid://bnjvom8uqgyex" path="res://scripts/state_machine/node_state_machine.gd" id="2_76oj4"]
+[ext_resource type="PackedScene" uid="uid://bqsospx0ejxpr" path="res://scenes/objects/bullet.tscn" id="2_qgnko"]
 [ext_resource type="Script" uid="uid://b26ilhf28q4uq" path="res://scenes/characters/walk_state.gd" id="3_atpat"]
 [ext_resource type="Script" uid="uid://suheit42dprd" path="res://scenes/characters/idle_state.gd" id="3_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dl1myevm606fc" path="res://assets/player.png" id="5_atpat"]
-[ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="6_kqtwu"]
-[ext_resource type="Script" uid="uid://b0jmoinivthgt" path="res://scenes/characters/attack_idle_state.gd" id="6_qgnko"]
-[ext_resource type="PackedScene" uid="uid://bvmlpirdpnq0l" path="res://scenes/components/bullet.tscn" id="7_2l4js"]
-[ext_resource type="Script" uid="uid://cfx5g1cfvavnu" path="res://scenes/characters/attack_walk_state.gd" id="7_7vyk4"]
 [ext_resource type="PackedScene" uid="uid://kju2141b7m8k" path="res://scenes/components/damage_component.tscn" id="7_eojnx"]
+[ext_resource type="AudioStream" uid="uid://bdxlqpx3rjuii" path="res://assets/sound/fire.mp3" id="8_7vyk4"]
+[ext_resource type="Script" uid="uid://1ey6aaocwpxv" path="res://scenes/characters/sound.gd" id="8_jk2m4"]
 [ext_resource type="PackedScene" uid="uid://drr4ttks0mvgg" path="res://scenes/components/hurt_component.tscn" id="8_qgnko"]
+[ext_resource type="AudioStream" uid="uid://dqjosok7qcxhe" path="res://assets/sound/steps1.ogg" id="10_jk2m4"]
+[ext_resource type="AudioStream" uid="uid://dlkafnv3os7na" path="res://assets/sound/stop_sound.ogg" id="11_xhtjm"]
+[ext_resource type="AudioStream" uid="uid://q1ilbow3xyw1" path="res://assets/sound/steps2.ogg" id="11_xrqxk"]
+[ext_resource type="AudioStream" uid="uid://bipg2ydr54e7i" path="res://assets/sound/steps3.ogg" id="12_g66nw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
 atlas = ExtResource("5_atpat")
@@ -222,6 +225,7 @@ radius = 70.45566
 scale = Vector2(0.3222828, 0.3222828)
 collision_layer = 2
 script = ExtResource("1_kqtwu")
+bullet_scene = ExtResource("2_qgnko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(68.26303, -6.2057266)
@@ -255,28 +259,24 @@ speed = 10000
 script = ExtResource("3_dyp2m")
 player = NodePath("../..")
 animatedSprite2d = NodePath("../../AnimatedSprite2D")
-hitbox = NodePath("../../HitComponent/hitbox")
 
-[node name="AttackIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
-script = ExtResource("6_qgnko")
-bullet_scene = ExtResource("7_2l4js")
-player = NodePath("../..")
-animatedSprite2d = NodePath("../../AnimatedSprite2D")
-hitbox = NodePath("../../HitComponent/hitbox")
+[node name="sound" type="Node" parent="StateMachine"]
+script = ExtResource("8_jk2m4")
 
-[node name="AttackWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
-script = ExtResource("7_7vyk4")
-player = NodePath("../..")
-animatedSprite2d = NodePath("../../AnimatedSprite2D")
-hitbox = NodePath("../../HitComponent/hitbox")
+[node name="Fire_sound" type="AudioStreamPlayer2D" parent="StateMachine/sound"]
+stream = ExtResource("8_7vyk4")
 
-[node name="HitComponent" parent="." instance=ExtResource("6_kqtwu")]
-position = Vector2(0, 37)
-is_owner_player = true
+[node name="Walk_sound1" type="AudioStreamPlayer2D" parent="StateMachine/sound"]
+stream = ExtResource("10_jk2m4")
 
-[node name="hitbox" type="CollisionShape2D" parent="HitComponent"]
-shape = SubResource("CircleShape2D_6eyoc")
-debug_color = Color(0.88152826, 0.0003523171, 0.82032806, 0.41960785)
+[node name="Walk_sound2" type="AudioStreamPlayer2D" parent="StateMachine/sound"]
+stream = ExtResource("11_xrqxk")
+
+[node name="Walk_sound3" type="AudioStreamPlayer2D" parent="StateMachine/sound"]
+stream = ExtResource("12_g66nw")
+
+[node name="Walk_stop_sound" type="AudioStreamPlayer2D" parent="StateMachine/sound"]
+stream = ExtResource("11_xhtjm")
 
 [node name="DamageComponent" parent="." instance=ExtResource("7_eojnx")]
 max_damage = 60
@@ -287,3 +287,7 @@ is_player = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
 position = Vector2(-1.7445397, -1.1401749)
 shape = SubResource("CircleShape2D_jk2m4")
+
+[connection signal="fire_sound" from="." to="StateMachine/sound" method="_on_fire_sound"]
+[connection signal="walk_sound" from="StateMachine/Walk" to="StateMachine/sound" method="_on_walk_walk_sound"]
+[connection signal="walk_sound_stop" from="StateMachine/Walk" to="StateMachine/sound" method="_on_walk_sound_stop"]

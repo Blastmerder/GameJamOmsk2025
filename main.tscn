@@ -15,7 +15,7 @@ position = Vector2(1, 1)
 position = Vector2(253, 94)
 
 [node name="Bullet" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(33.999996, -8)
+position = Vector2(75, -29.999998)
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("4_1bvp3")
