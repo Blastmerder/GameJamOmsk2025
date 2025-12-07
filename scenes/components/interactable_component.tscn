@@ -11,3 +11,4 @@ script = ExtResource("1_onphe")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="interactable_activated" from="." to="." method="_on_interactable_activated"]

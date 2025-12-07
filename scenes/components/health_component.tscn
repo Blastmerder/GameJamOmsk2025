@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfsy74gi4dw2r"]
+
+[ext_resource type="Script" uid="uid://dgaxk8whnhpbp" path="res://scenes/components/health_component.gd" id="1_2wcl1"]
+
+[node name="HealthComponent" type="Node"]
+script = ExtResource("1_2wcl1")
+
+[connection signal="disable_input" from="." to="." method="_on_disable_input"]

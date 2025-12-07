@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dl0qgbe50ojd3"]
+[gd_scene load_steps=21 format=3 uid="uid://dl0qgbe50ojd3"]
 
 [ext_resource type="Script" uid="uid://comvqxi7gvu3x" path="res://scenes/characters/player.gd" id="1_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://dy4fpe1tgxch0" path="res://assets/player.svg" id="2_2l4js"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://b26ilhf28q4uq" path="res://scenes/characters/walk_state.gd" id="3_atpat"]
 [ext_resource type="Script" uid="uid://suheit42dprd" path="res://scenes/characters/idle_state.gd" id="3_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dl1myevm606fc" path="res://assets/player.png" id="5_atpat"]
+[ext_resource type="PackedScene" uid="uid://c5jn7uhaf255l" path="res://scenes/components/hit_component.tscn" id="6_kqtwu"]
+[ext_resource type="Script" uid="uid://b0jmoinivthgt" path="res://scenes/characters/attack_idle_state.gd" id="6_qgnko"]
+[ext_resource type="PackedScene" uid="uid://bvmlpirdpnq0l" path="res://scenes/components/bullet.tscn" id="7_2l4js"]
+[ext_resource type="Script" uid="uid://cfx5g1cfvavnu" path="res://scenes/characters/attack_walk_state.gd" id="7_7vyk4"]
 [ext_resource type="PackedScene" uid="uid://kju2141b7m8k" path="res://scenes/components/damage_component.tscn" id="7_eojnx"]
 [ext_resource type="PackedScene" uid="uid://drr4ttks0mvgg" path="res://scenes/components/hurt_component.tscn" id="8_qgnko"]
 
@@ -251,6 +255,28 @@ speed = 10000
 script = ExtResource("3_dyp2m")
 player = NodePath("../..")
 animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
+
+[node name="AttackIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
+script = ExtResource("6_qgnko")
+bullet_scene = ExtResource("7_2l4js")
+player = NodePath("../..")
+animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
+
+[node name="AttackWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animatedSprite2d", "hitbox")]
+script = ExtResource("7_7vyk4")
+player = NodePath("../..")
+animatedSprite2d = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../HitComponent/hitbox")
+
+[node name="HitComponent" parent="." instance=ExtResource("6_kqtwu")]
+position = Vector2(0, 37)
+is_owner_player = true
+
+[node name="hitbox" type="CollisionShape2D" parent="HitComponent"]
+shape = SubResource("CircleShape2D_6eyoc")
+debug_color = Color(0.88152826, 0.0003523171, 0.82032806, 0.41960785)
 
 [node name="DamageComponent" parent="." instance=ExtResource("7_eojnx")]
 max_damage = 60

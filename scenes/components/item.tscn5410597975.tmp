@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cut8fdjcyfpm"]
+
+[ext_resource type="Script" uid="uid://7qc7aygwgfc6" path="res://scenes/components/interactable_component.gd" id="1_jadxl"]
+[ext_resource type="Script" uid="uid://cy4jaywm7rq7q" path="res://scenes/components/item_interact_component.gd" id="2_n8pbf"]
+[ext_resource type="PackedScene" uid="uid://cekvef4pj7de5" path="res://scenes/components/interactble_Item_component.tscn" id="4_ky561"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vljjh"]
+size = Vector2(114.5, 38.75)
+
+[node name="Item" type="Node2D"]
+script = ExtResource("2_n8pbf")
+
+[node name="InteractableComponent" type="Area2D" parent="."]
+script = ExtResource("1_jadxl")
+metadata/_custom_type_script = "uid://7qc7aygwgfc6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+shape = SubResource("RectangleShape2D_vljjh")
+
+[node name="InteractbleItemComponent" parent="." instance=ExtResource("4_ky561")]
+offset_left = -62.0
+offset_top = -33.0
+offset_right = -62.0
+offset_bottom = -33.0
