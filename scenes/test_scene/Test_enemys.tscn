@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr06510u0nj7e"]
+[gd_scene load_steps=5 format=3 uid="uid://dr06510u0nj7e"]
 
+[ext_resource type="Script" uid="uid://c7ottxsexx201" path="res://scenes/test_scene/test_enemys.gd" id="1_oafgu"]
 [ext_resource type="PackedScene" uid="uid://bk6nvm1f2ujyu" path="res://tilemaps/rooms.tscn" id="1_qoqrh"]
 [ext_resource type="PackedScene" uid="uid://dl0qgbe50ojd3" path="res://scenes/characters/player.tscn" id="1_ybkqf"]
 [ext_resource type="PackedScene" uid="uid://d1eh4dxvoy4ql" path="res://scenes/characters/ememy/enemy.tscn" id="2_qoqrh"]
 
 [node name="TestEnemys" type="Node2D"]
+script = ExtResource("1_oafgu")
 
 [node name="Rooms" parent="." instance=ExtResource("1_qoqrh")]
 
