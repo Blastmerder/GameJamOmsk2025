@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=6 format=3 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="PackedScene" uid="uid://dl0qgbe50ojd3" path="res://scenes/characters/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cut8fdjcyfpm" path="res://scenes/components/item.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bvmlpirdpnq0l" path="res://scenes/components/bullet.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://c2oou4nimmajx" path="res://scripts/input_events.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cn6wih68sghng" path="res://scenes/wall.tscn" id="5_lquwl"]
 
 [node name="main" type="Node2D"]
 
@@ -14,9 +15,13 @@ position = Vector2(1, 1)
 position = Vector2(253, 94)
 
 [node name="Bullet" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-0.4488678, -8.656233)
+position = Vector2(33.999996, -8)
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("4_1bvp3")
+
+[node name="wall" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(465.00003, 17)
+scale = Vector2(1.6341453, 1.6341453)
 
 [connection signal="attack" from="Node" to="Player" method="_on_attack"]

@@ -8,7 +8,7 @@ extends NodeState
 func _on_attack(direct, position) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.rotation = direct.angle()
-	bullet.position = position
+	bullet.position = position + 50*direct #50 * direct смешение от центра игрока direct нормализован
 	bullet.direction = direct
 	get_tree().current_scene.add_child(bullet)
 
