@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://g17rj7sli8ok"]
+
+[ext_resource type="Script" uid="uid://big2grfvf1jmm" path="res://scenes/controls/pause_menu.gd" id="1_mwbgh"]
+
+[sub_resource type="Theme" id="Theme_mwbgh"]
+
+[sub_resource type="Theme" id="Theme_gd2um"]
+
+[sub_resource type="Theme" id="Theme_6xrpj"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mwbgh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.31764707)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -68.0
+offset_right = 65.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_mwbgh")
+theme_override_font_sizes/font_size = 48
+text = "Продолжить"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_gd2um")
+theme_override_font_sizes/font_size = 48
+text = "Выйти в меню"
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6xrpj")
+theme_override_font_sizes/font_size = 48
+text = "Выйти из игры"

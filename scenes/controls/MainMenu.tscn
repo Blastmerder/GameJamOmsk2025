@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4h1pqgtlgunn"]
+
+[ext_resource type="Script" uid="uid://hi2j7jcb2vtn" path="res://scenes/controls/main_menu.gd" id="1_1k7se"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchor_right = 0.333
+anchor_bottom = 0.333
+offset_right = 0.64001465
+offset_bottom = 0.35998535
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1k7se")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 363.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = -74.5
+offset_right = 184.5
+offset_bottom = 74.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -53.0
+offset_right = 146.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Играть"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Выйти"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(319.99997, 180)
+scale = Vector2(1.0803002, 1.1209043)
+zoom = Vector2(3, 3)
